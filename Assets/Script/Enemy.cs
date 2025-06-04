@@ -25,6 +25,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     int scoreOnKill = 5;
 
+    [field: SerializeField]
+    public bool IsBoss { get; private set; } = false;
+
+
     private void Start()
     {
         // 시작할때 체력 변화를 구독자에게 알림
