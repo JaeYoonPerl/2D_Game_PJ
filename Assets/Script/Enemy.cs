@@ -28,11 +28,29 @@ public class Enemy : MonoBehaviour
     [field: SerializeField]
     public bool IsBoss { get; private set; } = false;
 
+    [SerializeField] 
+    private Guage bossHPBar;
+
 
     private void Start()
     {
         // 시작할때 체력 변화를 구독자에게 알림
         ChangedHPEvent.Invoke(m_hp, m_maxHP);
+
+        if (IsBoss && bossHPBar != null)
+        {
+            // 처음 체력 표시
+            bossHPBar.SetGuage((float)m_hp / m_maxHP);
+           
+            
+
+            // 체력 변동 시 UI 업데이트
+            ChangedHPEvent.AddListener((cur, max) =>
+            {
+                bossHPBar.SetGuage((float)cur / max);
+                
+            });
+        }
     }
 
 
@@ -51,9 +69,21 @@ public class Enemy : MonoBehaviour
         // 맞을 때 체력 변화를 구독자에게 알림
         ChangedHPEvent.Invoke(m_hp, m_maxHP);
 
+        //  피격 애니메이션
+        if (m_anim != null && m_hp > 0)
+        {
+            m_anim.SetTrigger("Damage");
+        }
+
         // 체력 0이하시 죽음
         if (m_hp <= 0)
         {
+            //  사망 애니메이션
+            if (m_anim != null)
+            {
+                m_anim.SetTrigger("Death");
+            }
+
 
             // 스코어 추가
             ScoreManager.Instance?.AddScore(scoreOnKill);
@@ -88,8 +118,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    [field: SerializeField]
-    public bool IsBoss { get; private set; } = false;
+    
 
 
 }
