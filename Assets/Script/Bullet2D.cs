@@ -29,7 +29,7 @@ public class Bullet2D : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.LogError($"OnTriggerEnter2D:{collision.gameObject.name}");
+        //Debug.LogError($"OnTriggerEnter2D:{collision.gameObject.name}");
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {

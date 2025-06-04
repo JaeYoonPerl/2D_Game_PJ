@@ -7,6 +7,7 @@ public class PlayerHealthUI : MonoBehaviour
     [SerializeField]
     PlayerHealth playerHealth;
 
+
     [SerializeField]
     Guage guage;
 

@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     public UnityEvent<int, int> ChangedHPEvent;
 
+    [SerializeField]
+    int scoreOnKill = 5;
+
     private void Start()
     {
         // 시작할때 체력 변화를 구독자에게 알림
@@ -47,9 +50,13 @@ public class Enemy : MonoBehaviour
         // 체력 0이하시 죽음
         if (m_hp <= 0)
         {
+
+            // 스코어 추가
+            ScoreManager.Instance?.AddScore(scoreOnKill);
+
             //m_anim.SetTrigger("Death");
             // 죽음시 게임 오브젝트 제거
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, 0.1f);
 
             // 죽음 알림
             KilledEvent.Invoke(this);

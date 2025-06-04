@@ -20,10 +20,18 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     SpriteRenderer spriteRenderer;
 
+    [SerializeField] 
+    GameObject gameOverUI;
+
     public void Start()
     {
         currentHP = maxHP;
         onHealthChanged?.Invoke(currentHP, maxHP);
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false); // 시작 시 비활성화
+        }
 
     }
 
@@ -37,12 +45,33 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHP <= 0)
         {
-            Debug.Log("사망");
+            Debug.Log("사망-게임오버");
+            GameOver();
         }
 
         StartCoroutine(Invincibility());
     }
 
+    void GameOver()
+    {
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+
+            // 점수와 시간 가져오기
+            int score = ScoreManager.Instance.GetScore();
+            float time = FindObjectOfType<TimerManager>()?.currentTime ?? 0f;
+
+            // 점수/시간 표시
+            GameOverDisplay display = gameOverUI.GetComponent<GameOverDisplay>();
+            if (display != null)
+            {
+                display.ShowGameOver(score, time);
+            }
+
+            Time.timeScale = 0f;
+        }
+    }
     IEnumerator Invincibility()
     {
         isInvincible = true;
