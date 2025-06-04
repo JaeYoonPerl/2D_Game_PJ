@@ -8,7 +8,7 @@ public class MoveToTarget : MonoBehaviour
     Rigidbody2D m_rigid;
 
     [SerializeField]
-    Transform m_target;
+    public Transform m_target;
 
     [SerializeField]
     Vector2 m_velocity = Vector2.zero;
@@ -18,7 +18,9 @@ public class MoveToTarget : MonoBehaviour
 
     private void Update()
     {
+        
         var dir = m_target.position - transform.position;
+
         m_velocity = dir.normalized * m_speed;
 
         // 좌우만 바라보게 하기

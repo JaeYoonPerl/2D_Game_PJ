@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     int scoreOnKill = 5;
 
     [field: SerializeField]
-    public bool IsBoss { get; private set; } = false;
+    public bool IsBoss { get; set; } = false;
 
     [SerializeField] 
     private Guage bossHPBar;
