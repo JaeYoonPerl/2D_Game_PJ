@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ScoreManager : MonoBehaviour
 {
    public static ScoreManager Instance {  get; private set; }
-
+    public int CurrentScore => score;
     private int score = 0;
 
     public UnityEvent<int> onScoreChanged;

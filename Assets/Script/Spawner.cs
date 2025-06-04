@@ -1,36 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField]
-    MoveToTarget m_perfabEnemy;
+    [Header("Enemy Prefab")]
+    [SerializeField] MoveToTarget m_perfabEnemy;
 
-    [SerializeField]
-    float m_spawnTime = 5f;
+    [Header("Spawn Settings")]
+    [SerializeField] Transform m_target;
+    [SerializeField] float m_spawnTime = 4f;
+    [SerializeField] float m_minSpawnTime = 1f;
+    [SerializeField] float m_spawnDecreaseRate = 0.2f;
+    [SerializeField] float m_timeBetweenDecrease = 5f;
 
-    [SerializeField]
-    Transform m_target;
+    [Header("Spawn Area")]
+    [SerializeField] Vector2 m_spawnAreaMin = new Vector2(-8f, -8f);
+    [SerializeField] Vector2 m_spawnAreaMax = new Vector2(8f, 8f);
+    [SerializeField] float m_minSpawnDistance = 5f;
 
-    // 스폰 최소 거리
-    [SerializeField]
-    float m_minSpawnDistance = 5f;
+    void Start()
+    {
+        StartCoroutine(SpawnRoutine());
+        StartCoroutine(DecreaseSpawnTimeRoutine());
+    }
 
-    [SerializeField]
-    Vector2 m_spawnAreaMin = new Vector2(-8f, -8f);
-
-    [SerializeField]
-    Vector2 m_spawnAreaMax = new Vector2(8f, 8f);
-
-    IEnumerator Start()
+    IEnumerator SpawnRoutine()
     {
         while (true)
         {
             Vector3 spawnPos;
 
-            // 조건을 만족할 때까지 반복
+            // 플레이어와 너무 가까운 위치는 피해서 스폰
             do
             {
                 float x = Random.Range(m_spawnAreaMin.x, m_spawnAreaMax.x);
@@ -39,13 +39,22 @@ public class Spawner : MonoBehaviour
             }
             while (Vector3.Distance(spawnPos, m_target.position) < m_minSpawnDistance);
 
-            // 생성
-            var obj = Instantiate(m_perfabEnemy);
-            obj.transform.position = spawnPos;
+            // 생성 및 타겟 할당
+            var obj = Instantiate(m_perfabEnemy, spawnPos, Quaternion.identity);
             obj.Target = m_target;
 
             yield return new WaitForSeconds(m_spawnTime);
         }
+    }
 
+    IEnumerator DecreaseSpawnTimeRoutine()
+    {
+        while (m_spawnTime > m_minSpawnTime)
+        {
+            yield return new WaitForSeconds(m_timeBetweenDecrease);
+            m_spawnTime -= m_spawnDecreaseRate;
+            m_spawnTime = Mathf.Max(m_minSpawnTime, m_spawnTime);
+            Debug.Log($"스폰 주기 감소: {m_spawnTime:F2}초");
+        }
     }
 }

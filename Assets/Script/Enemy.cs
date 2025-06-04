@@ -95,6 +95,12 @@ public class Enemy : MonoBehaviour
             // 죽음 알림
             KilledEvent.Invoke(this);
 
+            // 보스일 경우 클리어 UI 띄움
+            if (IsBoss)
+            {
+                FindObjectOfType<BossClearHandler>()?.OnBossKilled();
+            }
+
         }
     }
 
