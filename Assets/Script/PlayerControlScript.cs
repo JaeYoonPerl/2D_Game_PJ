@@ -16,12 +16,21 @@ public class PlayerControlScript : MonoBehaviour
     [SerializeField]
     Bullet2D m_prefabBullet;
 
+    [SerializeField]
+    Animator m_anim; // Animator 연결
+
     private void Update()
     {
         var x = Input.GetAxisRaw("Horizontal");
         var y = Input.GetAxisRaw("Vertical");
         m_velocity = new Vector2(x, y);
 
+
+        // 애니메이션 파라미터 업데이트
+        if (m_anim != null)
+        
+            m_anim.SetFloat("Speed", m_velocity.magnitude); // 0일 땐 Idle, 그 이상이면 Walk
+        
 
         if (Input.GetMouseButtonDown(0))
         {
