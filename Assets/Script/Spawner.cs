@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
 
     // 스폰 최소 거리
     [SerializeField]
-    float m_minSpawnDistance = 4f;
+    float m_minSpawnDistance = 5f;
 
     [SerializeField]
     Vector2 m_spawnAreaMin = new Vector2(-8f, -8f);

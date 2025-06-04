@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 8982280441497290940}
   - component: {fileID: 777429102079455362}
   - component: {fileID: 7655357425293913123}
+  - component: {fileID: 2345489060200568870}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -238,7 +239,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &3608091375333985584
@@ -267,7 +268,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &8982280441497290940
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7642422303cbf4098fa99fcfc89927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_anim: {fileID: 0}
+  m_anim: {fileID: 2345489060200568870}
   m_maxHP: 10
   m_hp: 10
   KilledEvent:
@@ -374,7 +375,30 @@ MonoBehaviour:
   ChangedHPEvent:
     m_PersistentCalls:
       m_Calls: []
+  scoreOnKill: 5
   <IsBoss>k__BackingField: 0
+--- !u!95 &2345489060200568870
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405406787278489713}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 739240ec3c850bd449c1aae3fd751554, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4413924727466268651
 GameObject:
   m_ObjectHideFlags: 0
