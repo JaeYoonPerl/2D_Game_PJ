@@ -11,7 +11,7 @@ public class PlayerControlScript : MonoBehaviour
     Vector2 m_velocity = Vector2.zero;
 
     [SerializeField]
-    float m_speed = 1f;
+    float m_speed = 3f;
 
     [SerializeField]
     Bullet2D m_prefabBullet;

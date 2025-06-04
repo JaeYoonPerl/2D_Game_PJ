@@ -22,8 +22,8 @@ public class MoveToTarget : MonoBehaviour
         m_velocity = dir.normalized * m_speed;
 
         // 방향바라보며 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
 
     }
