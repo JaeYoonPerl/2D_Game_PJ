@@ -253,8 +253,11 @@ MonoBehaviour:
   bossEnemy: {fileID: 244420957585799549}
   target: {fileID: 0}
   chargeSpeed: 20
-  chargeDuration: 0.3
+  overshootDistance: 3
   chargeDamage: 3
+  preChargeDelay: 0.8
+  warningEffectPrefab: {fileID: 4416054634152250833, guid: 6eb4bd4aa87bbda4ab66c12ad79fe745, type: 3}
+  warningDuration: 1
 --- !u!1 &3249795329016649581
 GameObject:
   m_ObjectHideFlags: 0
