@@ -12,7 +12,7 @@ public class BossSpawner : MonoBehaviour
 
     [Header("스폰 설정")]
     [SerializeField] float spawnRadius = 20f;
-    [SerializeField] float safeDistance = 5f;
+    [SerializeField] float safeDistance = 10f;
     [SerializeField] float spawnTime = 120f;
 
     private void Start()

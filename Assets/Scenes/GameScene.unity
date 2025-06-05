@@ -2515,8 +2515,8 @@ MonoBehaviour:
   bossHPBarUI: {fileID: 1203391308}
   playerTransform: {fileID: 834992547}
   spawnRadius: 20
-  safeDistance: 5
-  spawnTime: 10
+  safeDistance: 10
+  spawnTime: 15
 --- !u!4 &701769062
 Transform:
   m_ObjectHideFlags: 0
