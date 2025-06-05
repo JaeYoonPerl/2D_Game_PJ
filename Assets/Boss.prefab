@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5344386642731931256}
   - component: {fileID: 244420957585799549}
   - component: {fileID: 8263242760300062073}
+  - component: {fileID: -3670930144287815235}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
@@ -236,6 +237,24 @@ MonoBehaviour:
   m_target: {fileID: 0}
   m_velocity: {x: 0, y: 0}
   m_speed: 1
+--- !u!114 &-3670930144287815235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310702586118312930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca2e413862a16e4aad39c25070da875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1797178715111138298}
+  bossEnemy: {fileID: 244420957585799549}
+  target: {fileID: 0}
+  chargeSpeed: 20
+  chargeDuration: 0.3
+  chargeDamage: 3
 --- !u!1 &3249795329016649581
 GameObject:
   m_ObjectHideFlags: 0

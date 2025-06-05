@@ -63,6 +63,17 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        // 돌진 중엔 무시
+        var charge = GetComponent<BossChargeAttack>();
+        if(charge != null && charge.IsCharging)
+        {
+            Debug.Log("돌진 중 → 데미지 무시");
+            return;
+        }
+
+
+
+
         m_hp -= damage;
         //피격 애니메이션 실행
         m_anim.SetTrigger("Damage");
