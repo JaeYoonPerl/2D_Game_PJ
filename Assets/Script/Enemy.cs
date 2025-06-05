@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
     {
         m_hp -= damage;
         //피격 애니메이션 실행
-       // m_anim.SetTrigger("Damage");
+        m_anim.SetTrigger("Damage");
         // 맞을 때 체력 변화를 구독자에게 알림
         ChangedHPEvent.Invoke(m_hp, m_maxHP);
 
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
 
             //m_anim.SetTrigger("Death");
             // 죽음시 게임 오브젝트 제거
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject, 0.5f);
 
             // 죽음 알림
             KilledEvent.Invoke(this);
@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Debug.Log($"충돌한 대상: {collision.gameObject.name}");
+        //Debug.Log($"충돌한 대상: {collision.gameObject.name}");
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8c0ba779932a46e449367a4143c3b14d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bossPrefab: {fileID: 310702586118312930, guid: a4518a8e8082d4342b31a7c28f070fe5, type: 3}
+  - bossHPBarUI: {instanceID: 0}
+  - playerTransform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

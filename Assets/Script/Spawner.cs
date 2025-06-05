@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(m_timeBetweenDecrease);
             m_spawnTime -= m_spawnDecreaseRate;
             m_spawnTime = Mathf.Max(m_minSpawnTime, m_spawnTime);
-            Debug.Log($"스폰 주기 감소: {m_spawnTime:F2}초");
+            //Debug.Log($"스폰 주기 감소: {m_spawnTime:F2}초");
         }
     }
 }
