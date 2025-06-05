@@ -9,6 +9,11 @@ public class Bullet2D : MonoBehaviour
 
     [SerializeField]
     float m_speed = 2f;
+    int m_damage = 1; // 기본값
+    public void SetDamage(int value)
+    {
+        m_damage = value;
+    }
 
     [ContextMenu(nameof(Fire))]
     void Fire()
@@ -29,15 +34,12 @@ public class Bullet2D : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.LogError($"OnTriggerEnter2D:{collision.gameObject.name}");
-
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            // 충돌시 데미지 일정량 
             Enemy enemy = collision.GetComponent<Enemy>();
-            if(enemy != null)
+            if (enemy != null)
             {
-                enemy.TakeDamage(4);
+                enemy.TakeDamage(m_damage);
             }
 
             Destroy(gameObject);

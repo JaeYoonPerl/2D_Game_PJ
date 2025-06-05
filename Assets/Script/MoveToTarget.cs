@@ -14,7 +14,7 @@ public class MoveToTarget : MonoBehaviour
     Vector2 m_velocity = Vector2.zero;
 
     [SerializeField]
-    float m_speed = 0.5f;
+    float m_speed = 1f;
 
     private void Update()
     {

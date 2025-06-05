@@ -83,7 +83,9 @@ public class Enemy : MonoBehaviour
             {
                 m_anim.SetTrigger("Death");
             }
-
+            // 경험치 지급
+            GameObject player = GameObject.FindWithTag("Player");
+            player.GetComponent<PlayerStatus>()?.GainExperience(3);
 
             // 스코어 추가
             ScoreManager.Instance?.AddScore(scoreOnKill);

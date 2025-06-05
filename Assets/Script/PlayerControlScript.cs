@@ -11,13 +11,23 @@ public class PlayerControlScript : MonoBehaviour
     Vector2 m_velocity = Vector2.zero;
 
     [SerializeField]
-    float m_speed = 3f;
+    float m_speed = 1.5f;
 
     [SerializeField]
     Bullet2D m_prefabBullet;
 
     [SerializeField]
     Animator m_anim; // Animator 연결
+
+    [SerializeField] 
+    PlayerStatus m_status;
+
+
+    [SerializeField]
+    // 공격간 딜레이 시간
+    float attackDelay = 0.3f;
+    // 마지막 공격 시간
+    float lastAttackTime = -999f;
 
     private void Update()
     {
@@ -32,8 +42,11 @@ public class PlayerControlScript : MonoBehaviour
             m_anim.SetFloat("Speed", m_velocity.magnitude); // 0일 땐 Idle, 그 이상이면 Walk
         
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&Time.time >=lastAttackTime+attackDelay)
         {
+
+            lastAttackTime = Time.time;
+
             var pos = transform.position;
             var targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos.z = 0;
@@ -50,6 +63,7 @@ public class PlayerControlScript : MonoBehaviour
             var obj = Instantiate(m_prefabBullet);
             obj.transform.position = pos;
             obj.Fire(dir.normalized * 5f);
+            obj.SetDamage(m_status.AttackPower);
         }
 
 
@@ -63,7 +77,7 @@ public class PlayerControlScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        m_rigid.velocity = m_velocity * m_speed;
+        m_rigid.velocity = m_velocity * m_status.stats.moveSpeed;
     }
 
 

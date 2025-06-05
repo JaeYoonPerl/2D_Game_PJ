@@ -23,10 +23,18 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] 
     GameObject gameOverUI;
 
+    [SerializeField]
+    PlayerStatus m_status;
+    [SerializeField]
+    Guage healthGuage;
+
+
     public void Start()
     {
+        maxHP = m_status.MaxHP; // PlayerStatus에서 가져오기
         currentHP = maxHP;
-        onHealthChanged?.Invoke(currentHP, maxHP);
+
+        UpdateHealthUI();
 
         if (gameOverUI != null)
         {
@@ -34,14 +42,24 @@ public class PlayerHealth : MonoBehaviour
         }
 
     }
-
+    public void UpdateHealthUI()
+    {
+        if (healthGuage != null)
+        {
+            healthGuage.SetGuage((float)currentHP / m_status.MaxHP);
+            healthGuage.SetLable(currentHP.ToString());
+            healthGuage.SetLableMax(m_status.MaxHP.ToString());
+        }
+    }
     public void TakeDamage(int damage)
     {
         if (isInvincible) return;
 
         currentHP -= damage;
-        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-        onHealthChanged?.Invoke(currentHP, maxHP);
+        currentHP = Mathf.Clamp(currentHP, 0, m_status.MaxHP);
+
+        onHealthChanged?.Invoke(currentHP, m_status.MaxHP);
+        UpdateHealthUI();
 
         if (currentHP <= 0)
         {
@@ -99,11 +117,20 @@ public class PlayerHealth : MonoBehaviour
         isInvincible = false;
     }
 
+    public void FullyHeal()
+    {
+        currentHP = m_status.MaxHP;
+        onHealthChanged?.Invoke(currentHP, m_status.MaxHP);
+        UpdateHealthUI(); // 체력바 갱신
+    }
+
+
     public void Heal(int amount)
     {
         currentHP += amount;
-        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-        onHealthChanged?.Invoke(currentHP, maxHP);
+        currentHP = Mathf.Clamp(currentHP, 0, m_status.MaxHP);
+        onHealthChanged?.Invoke(currentHP, m_status.MaxHP);
+        UpdateHealthUI();
     }
 
 }

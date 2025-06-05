@@ -36,7 +36,7 @@ public class Guage : MonoBehaviour
 
     public void SetLableMax(string v)
     {
-        m_txtLableMax.text = v;
+        //m_txtLableMax.text = v;
     }
 
 
