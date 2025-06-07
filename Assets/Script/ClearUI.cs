@@ -22,7 +22,7 @@ public class ClearUI : MonoBehaviour
     public void GoNextStage()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("NextStageScene");
+        SceneManager.LoadScene("MountainScene");
     }
 
     public void GoHome()
