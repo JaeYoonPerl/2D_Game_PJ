@@ -28,6 +28,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     Guage healthGuage;
 
+    public int CurrentHP => currentHP;     //  외부 접근용 프로퍼티
+    public int MaxHP => maxHP;
 
     public void Start()
     {
@@ -124,6 +126,12 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI(); // 체력바 갱신
     }
 
+    public void SetHP(int current, int max)
+    {
+        maxHP = max;
+        currentHP = Mathf.Clamp(current, 0, maxHP);
+        UpdateHealthUI(); // 체력 UI 갱신 함수가 있다면 같이 호출
+    }
 
     public void Heal(int amount)
     {

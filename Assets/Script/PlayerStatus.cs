@@ -27,7 +27,22 @@ public class PlayerStatus : MonoBehaviour
     private void Start()
     {
         skillManager = GetComponent<SkillManager>();
+        if (GameManager.Instance != null)
+        {
+            stats.level = GameManager.Instance.playerLevel;
+            stats.currentExp = GameManager.Instance.playerExp;
 
+            var health = GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.SetHP(GameManager.Instance.playerHP, GameManager.Instance.playerMaxHP);
+            }
+
+            foreach (var skill in GameManager.Instance.acquiredSkills)
+            {
+                skillManager.AddOrLevelUpSkill(skill); // 스킬 등록
+            }
+        }
 
     }
 

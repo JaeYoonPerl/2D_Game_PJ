@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ClearUI : MonoBehaviour
@@ -21,6 +22,21 @@ public class ClearUI : MonoBehaviour
 
     public void GoNextStage()
     {
+        var player = FindObjectOfType<PlayerStatus>();
+        var health = player.GetComponent<PlayerHealth>();
+        var skillManager = player.GetComponent<SkillManager>();
+
+        GameManager.Instance.playerLevel = player.stats.level;
+        GameManager.Instance.playerExp = player.stats.currentExp;
+        GameManager.Instance.playerHP = health.CurrentHP;
+        GameManager.Instance.playerMaxHP = health.MaxHP;
+        GameManager.Instance.acquiredSkills = new List<SkillData>();
+
+        foreach (var skill in skillManager.acquiredSkills)
+        {
+            GameManager.Instance.acquiredSkills.Add(skill.data);
+        }
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("MountainScene");
     }
