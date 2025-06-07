@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee32867a1d1f9c14ab23896203d07f2b, type: 3}
-  m_Name: Skill_multiShot
+  m_Name: PlayerShooting.
   m_EditorClassIdentifier: 
   skillName: Multi shot
   description: sssssssadsa

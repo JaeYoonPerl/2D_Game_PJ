@@ -4,47 +4,37 @@ using UnityEngine;
 
 public class PlayerControlScript : MonoBehaviour
 {
-    [SerializeField]
-    Rigidbody2D m_rigid;
+    [Header("이동 관련")]
+    [SerializeField] private Rigidbody2D m_rigid;
+    [SerializeField] private float m_speed = 1.5f;
+    private Vector2 m_velocity = Vector2.zero;
 
-    [SerializeField]
-    Vector2 m_velocity = Vector2.zero;
+    [Header("공격 관련")]
+    [SerializeField] private float attackDelay = 0.3f;
+    private float lastAttackTime = -999f;
 
-    [SerializeField]
-    float m_speed = 1.5f;
+    [SerializeField] private PlayerShooting m_shooting;
 
-    [SerializeField]
-    Bullet2D m_prefabBullet;
+    [Header("기타")]
+    [SerializeField] private Animator m_anim;
+    [SerializeField] private PlayerStatus m_status;
 
-    [SerializeField]
-    Animator m_anim; // Animator 연결
-
-    [SerializeField] 
-    PlayerStatus m_status;
-
-
-    [SerializeField]
-    // 공격간 딜레이 시간
-    float attackDelay = 0.3f;
-    // 마지막 공격 시간
-    float lastAttackTime = -999f;
-
-    private void Update()
+    void Update()
     {
-        var x = Input.GetAxisRaw("Horizontal");
-        var y = Input.GetAxisRaw("Vertical");
+        // 이동 입력 처리
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
         m_velocity = new Vector2(x, y);
 
-
-        // 애니메이션 파라미터 업데이트
+        // 애니메이션 처리
         if (m_anim != null)
-        
-            m_anim.SetFloat("Speed", m_velocity.magnitude); // 0일 땐 Idle, 그 이상이면 Walk
-        
-
-        if (Input.GetMouseButtonDown(0)&&Time.time >=lastAttackTime+attackDelay)
         {
+            m_anim.SetFloat("Speed", m_velocity.magnitude);
+        }
 
+        // 공격 처리
+        if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackDelay)
+        {
             lastAttackTime = Time.time;
 
             var pos = transform.position;
@@ -56,30 +46,25 @@ public class PlayerControlScript : MonoBehaviour
             if (dir.x != 0)
             {
                 var scale = transform.localScale;
-                scale.x = Mathf.Sign(dir.x) * Mathf.Abs(scale.x); // 방향 유지, 크기 변화 없음
+                scale.x = Mathf.Sign(dir.x) * Mathf.Abs(scale.x);
                 transform.localScale = scale;
             }
 
-            var obj = Instantiate(m_prefabBullet);
-            obj.transform.position = pos;
-            obj.Fire(dir.normalized * 5f);
-            obj.SetDamage(m_status.AttackPower);
+            m_shooting.Fire(dir.normalized);
         }
 
 
+        // 테스트용 데미지
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GetComponent<PlayerHealth>()?.TakeDamage(2);
         }
-
-
     }
 
     void FixedUpdate()
     {
         m_rigid.velocity = m_velocity * m_status.stats.moveSpeed;
     }
-
 
     private void OnDrawGizmos()
     {
@@ -88,10 +73,7 @@ public class PlayerControlScript : MonoBehaviour
         targetPos.z = 0;
 
         var dir = targetPos - pos;
-
         Debug.DrawLine(pos, pos + dir, Color.blue);
         Debug.DrawLine(pos, pos + dir.normalized, Color.green);
     }
-
-
 }

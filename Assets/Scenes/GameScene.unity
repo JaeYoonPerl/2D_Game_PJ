@@ -1090,6 +1090,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1061016000}
   timeText: {fileID: 1807670907}
+--- !u!1 &126446087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 126446088}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &126446088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126446087}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.03, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 834992547}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &192769838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,6 +2894,8 @@ GameObject:
   - component: {fileID: 834992553}
   - component: {fileID: 834992554}
   - component: {fileID: 834992555}
+  - component: {fileID: 834992556}
+  - component: {fileID: 834992557}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2884,6 +2917,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 590817372}
+  - {fileID: 126446088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &834992548
@@ -2953,12 +2987,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigid: {fileID: 834992551}
-  m_velocity: {x: 0, y: 0}
   m_speed: 1.5
-  m_prefabBullet: {fileID: 2477259839060061696, guid: 9e3e135c2e81fe1429b7f708f71481ec, type: 3}
+  attackDelay: 0.5
+  m_shooting: {fileID: 834992556}
   m_anim: {fileID: 834992553}
   m_status: {fileID: 834992554}
-  attackDelay: 0.5
 --- !u!70 &834992550
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3107,6 +3140,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e7d0280f7953641a7582d17e39448a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &834992556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834992546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7f18b2bae394a43b1d2106ad393461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2477259839060061696, guid: 9e3e135c2e81fe1429b7f708f71481ec, type: 3}
+  firePoint: {fileID: 126446088}
+  status: {fileID: 834992554}
+--- !u!114 &834992557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834992546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe19bfeda3138e4db316df055527339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  damage: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &849621718
 GameObject:
   m_ObjectHideFlags: 0

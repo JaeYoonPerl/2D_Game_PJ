@@ -29,6 +29,23 @@ public class SkillManager : MonoBehaviour
         else
         {
             acquiredSkills.Add(new SkillSlot(skill));
+            ActivateSkill(skill); //  ¿©±â!
+        }
+    }
+
+    void ActivateSkill(SkillData skill)
+    {
+        switch (skill.skillType)
+        {
+            case SkillType.MultiShot:
+                GetComponent<PlayerShooting>()?.EnableMultiShot();
+                break;
+           case SkillType.AreaBlast:
+                GetComponent<PlayerAreaBlast>()?.EnableSkill();
+                break;
+                /* case SkillType.OrbitObject:
+                    GetComponent<PlayerOrbitSkill>()?.EnableSkill();
+                    break;*/
         }
     }
 
