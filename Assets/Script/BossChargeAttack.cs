@@ -18,6 +18,9 @@ public class BossChargeAttack : MonoBehaviour
     [SerializeField] private float warningDuration = 1.0f;
 
 
+    [SerializeField] private GameObject chargeWarningEffectPrefab;
+
+
     private bool hasCharged = false;
     private bool isCharging = false;
     private Vector2 chargeDirection;
@@ -48,14 +51,13 @@ public class BossChargeAttack : MonoBehaviour
         if (isCharging || target == null) yield break;
         isCharging = true;
 
-        // 전조 이펙트 생성
-        if (warningEffectPrefab != null)
+        // 전조 이펙트 생성 (돌진 전 1초 정도)
+        if (chargeWarningEffectPrefab != null)
         {
-            Instantiate(warningEffectPrefab, transform.position, Quaternion.identity);
+            Instantiate(chargeWarningEffectPrefab, transform.position, Quaternion.identity);
         }
 
-        // 잠깐 대기 (전조시간)
-        yield return new WaitForSeconds(warningDuration);
+        yield return new WaitForSeconds(preChargeDelay); // 1초 대기 후 돌진
 
         Debug.Log("보스 돌진!");
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 [System.Serializable]
@@ -12,6 +13,7 @@ public class PlayerStats
     public int level = 1;
     public int currentExp = 0;
     public int expToNextLevel = 10;
+
 
     public void GainExp(int amount)
     {
@@ -25,6 +27,7 @@ public class PlayerStats
             maxHP += 2;
             attackPower += 1;
             moveSpeed += 0.1f;
+           
         }
     }
 

@@ -5,22 +5,34 @@ using TMPro;
 
 public class PlayerStatus : MonoBehaviour
 {
+    [Header("레벨업 관련")]
+    [SerializeField] private GameObject levelUpEffectPrefab;
+    [SerializeField] private TextMeshProUGUI levelUpText;
+    [SerializeField] private float textShowTime = 1.5f;
 
-    [SerializeField]
-    private GameObject levelUpEffectPrefab;
+    [Header("스킬 관련")]
+    [SerializeField] private SkillSelectionUI skillUI;
+    [SerializeField] private List<SkillData> allSkills;
 
-    [SerializeField]
-    private TextMeshProUGUI levelUpText;
 
-    [SerializeField]
-    private float textShowTime = 1.5f;
+    [SerializeField] private SkillSelectUI skillSelectUI;
+    [SerializeField] private SkillDatabase skillDatabase;
+
+
 
     public PlayerStats stats = new PlayerStats();
 
+    private SkillManager skillManager;
+
+    private void Start()
+    {
+        skillManager = GetComponent<SkillManager>();
+
+
+    }
 
     public void GainExperience(int amount)
     {
-
         int previousLevel = stats.level;
         stats.GainExp(amount);
 
@@ -28,31 +40,36 @@ public class PlayerStatus : MonoBehaviour
         {
             Debug.Log($"레벨 업! {previousLevel} → {stats.level}");
 
-            ShowLevelUpEffect(); // ← 이펙트 실행!
-            ShowLevelUpText();   // ← 텍스트 띄우기 
+            ShowLevelUpEffect();
+            //ShowLevelUpText();
+            StartCoroutine(ShowLevelUpText());
 
+            // 체력 회복
             var health = GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.FullyHeal(); // 레벨업 시 체력 완전 회복
+                health.FullyHeal();
+                health.UpdateHealthUI();
             }
-        }
 
-        // 체력바 갱신 (레벨업하지 않아도 필요할 수 있음)
-        GetComponent<PlayerHealth>()?.UpdateHealthUI();
+           
+        Debug.Log("ShowSkillSelection 호출!");
+            //  스킬 선택 UI 띄우기
+            ShowSkillSelection();
+        }
+        else
+        {
+            GetComponent<PlayerHealth>()?.UpdateHealthUI();
+        }
     }
 
     void ShowLevelUpEffect()
     {
         if (levelUpEffectPrefab != null)
         {
-            // 이펙트 생성
             var effect = Instantiate(levelUpEffectPrefab, transform.position, Quaternion.identity);
             Destroy(effect, 2f);
         }
-
-        if (levelUpText != null)
-            StartCoroutine(ShowLevelUpText());
     }
 
     IEnumerator ShowLevelUpText()
@@ -62,12 +79,42 @@ public class PlayerStatus : MonoBehaviour
         levelUpText.gameObject.SetActive(false);
     }
 
+    void ShowSkillSelection()
+    {
 
+        Debug.Log("스킬 선택 UI 실행");
+        var allSkills = skillDatabase.allSkills;
+
+        // 3개 랜덤 선택
+        List<SkillData> selectedSkills = new List<SkillData>();
+        List<SkillData> tempList = new List<SkillData>(allSkills);
+
+        for (int i = 0; i < 3 && tempList.Count > 0; i++)
+        {
+            int rand = Random.Range(0, tempList.Count);
+            selectedSkills.Add(tempList[rand]);
+            tempList.RemoveAt(rand);
+        }
+
+        skillSelectUI.Show(selectedSkills);
+    }
+
+    List<SkillData> GetRandomSkills(int count)
+    {
+        List<SkillData> result = new List<SkillData>();
+        List<SkillData> candidates = new List<SkillData>(allSkills);
+
+        while (result.Count < count && candidates.Count > 0)
+        {
+            int index = Random.Range(0, candidates.Count);
+            result.Add(candidates[index]);
+            candidates.RemoveAt(index);
+        }
+
+        return result;
+    }
 
     public int AttackPower => stats.attackPower;
     public float MoveSpeed => stats.moveSpeed;
     public int MaxHP => stats.maxHP;
-
-
-
 }

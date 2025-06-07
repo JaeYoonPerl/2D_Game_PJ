@@ -1,41 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChargeWarningEffect : MonoBehaviour
 {
-    [SerializeField] private float lifetime = 1f; // 유지 시간
-    [SerializeField] private float fadeDuration = 0.5f; // 페이드 아웃 시간
+    [SerializeField] private SpriteRenderer crackSprite;
+    [SerializeField] private SpriteRenderer glowRing;
+    [SerializeField] private float duration = 1.2f;
 
-    private SpriteRenderer spriteRenderer;
-    private float timer;
-
-    void Awake()
+    private void Start()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        StartCoroutine(AnimateEffect());
     }
 
-    void Start()
+    IEnumerator AnimateEffect()
     {
-        timer = lifetime;
-    }
+        float elapsed = 0f;
+        Color crackColor = crackSprite.color;
+        Color glowColor = glowRing.color;
 
-    void Update()
-    {
-        timer -= Time.deltaTime;
-
-        if (timer <= fadeDuration)
+        while (elapsed < duration)
         {
-            float alpha = Mathf.Clamp01(timer / fadeDuration);
-            if (spriteRenderer != null)
-            {
-                Color color = spriteRenderer.color;
-                color.a = alpha;
-                spriteRenderer.color = color;
-            }
+            float t = elapsed / duration;
+
+            // Scale 흔들림
+            crackSprite.transform.localScale = Vector3.one * (1 + Mathf.Sin(t * 20f) * 0.1f);
+
+            // Fade out
+            crackColor.a = Mathf.Lerp(1f, 0f, t);
+            glowColor.a = Mathf.Lerp(0.7f, 0f, t);
+
+            crackSprite.color = crackColor;
+            glowRing.color = glowColor;
+
+            elapsed += Time.deltaTime;
+            yield return null;
         }
 
-        if (timer <= 0f)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
