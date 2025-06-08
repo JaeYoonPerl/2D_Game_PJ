@@ -2644,7 +2644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0ba779932a46e449367a4143c3b14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 310702586118312930, guid: a4518a8e8082d4342b31a7c28f070fe5, type: 3}
+  bossPrefab: {fileID: 310702586118312930, guid: e6e11a2187cbcdb4faf7cf2b24b6ff87, type: 3}
   bossHPBarUI: {fileID: 1203391308}
   playerTransform: {fileID: 834992547}
   spawnRadius: 20
@@ -4827,7 +4827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d42a9d95d9119548933b770e6e1a909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_perfabEnemy: {fileID: 777429102079455362, guid: 69957879fbbfadc4f8962576b938cf26, type: 3}
+  m_perfabEnemy: {fileID: 777429102079455362, guid: 69bb2264b7632f14a982335f87a39532, type: 3}
   m_target: {fileID: 834992547}
   m_spawnTime: 4
   m_minSpawnTime: 1
