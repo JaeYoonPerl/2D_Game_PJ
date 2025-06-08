@@ -368,8 +368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_anim: {fileID: 2345489060200568870}
-  m_maxHP: 50
-  m_hp: 50
+  m_maxHP: 10
+  m_hp: 10
   KilledEvent:
     m_PersistentCalls:
       m_Calls: []
