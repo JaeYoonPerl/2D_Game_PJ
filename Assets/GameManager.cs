@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int playerMaxHP = 10;
     public int attackPower = 5;
     public float moveSpeed = 3f;
-    public int expToNextLevel = 10;
+    public int expToNextLevel = 20;
 
     public List<SkillData> acquiredSkills = new List<SkillData>();
 
