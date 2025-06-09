@@ -2649,7 +2649,7 @@ MonoBehaviour:
   playerTransform: {fileID: 834992547}
   spawnRadius: 20
   safeDistance: 10
-  spawnTime: 10
+  spawnTime: 120
 --- !u!4 &701769062
 Transform:
   m_ObjectHideFlags: 0
@@ -5447,6 +5447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clearUI: {fileID: 551517830}
+  goFinal: {fileID: 0}
 --- !u!4 &1564342923
 Transform:
   m_ObjectHideFlags: 0

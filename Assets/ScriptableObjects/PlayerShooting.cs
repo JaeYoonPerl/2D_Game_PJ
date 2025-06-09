@@ -13,6 +13,12 @@ public class PlayerShooting : MonoBehaviour
         multiShotLevel++;
         Debug.Log($"멀티샷 레벨: {multiShotLevel}");
     }
+    public void UpdateMultiShotLevel(int level)
+    {
+        multiShotLevel = level;
+        Debug.Log($"멀티샷 레벨 업데이트: {multiShotLevel}");
+    }
+
 
     public void Fire(Vector2 direction)
     {
