@@ -12,7 +12,7 @@ public class PlayerStats
     public float moveSpeed = 1.5f;
     public int level = 1;
     public int currentExp = 0;
-    public int expToNextLevel = 10;
+    public int expToNextLevel = 20;
 
 
     public void GainExp(int amount)

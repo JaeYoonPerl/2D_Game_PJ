@@ -54,11 +54,7 @@ public class PlayerControlScript : MonoBehaviour
         }
 
 
-        // 테스트용 데미지
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<PlayerHealth>()?.TakeDamage(2);
-        }
+
     }
 
     void FixedUpdate()

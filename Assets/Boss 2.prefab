@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8263242760300062073}
   - component: {fileID: -3670930144287815235}
   m_Layer: 6
-  m_Name: Boss 1
+  m_Name: Boss 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ Animator:
   m_GameObject: {fileID: 310702586118312930}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df8268c934c09f64b97e5b9db580acc0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7c4f08c55d2a15943af11aade050035f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

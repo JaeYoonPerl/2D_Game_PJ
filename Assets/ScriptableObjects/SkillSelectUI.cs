@@ -19,6 +19,8 @@ public class SkillSelectUI : MonoBehaviour
 
     public void Show(List<SkillData> skills)
     {
+        Time.timeScale = 0f; // 게임 일시정지
+
         currentChoices = skills;
 
         for (int i = 0; i < options.Count; i++)
@@ -45,7 +47,8 @@ public class SkillSelectUI : MonoBehaviour
         // SkillManager에 등록
         FindObjectOfType<SkillManager>()?.AddOrLevelUpSkill(selected);
 
-        // 선택 UI 숨기기
+        // 선택 UI 숨기기 + 시간 재개
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
 }

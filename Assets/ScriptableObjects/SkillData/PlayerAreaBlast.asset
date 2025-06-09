@@ -16,4 +16,4 @@ MonoBehaviour:
   description: sdasdasdasdasd
   icon: {fileID: 21300000, guid: 2456dd2824f5ec540830760922f5bac6, type: 3}
   maxLevel: 5
-  skillType: 0
+  skillType: 1

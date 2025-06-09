@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_anim: {fileID: 5344386642731931256}
-  m_maxHP: 50
-  m_hp: 50
+  m_maxHP: 500
+  m_hp: 500
   KilledEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_rigid: {fileID: 1797178715111138298}
   m_target: {fileID: 0}
   m_velocity: {x: 0, y: 0}
-  m_speed: 1
+  m_speed: 2.3
 --- !u!114 &-3670930144287815235
 MonoBehaviour:
   m_ObjectHideFlags: 0

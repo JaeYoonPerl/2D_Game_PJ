@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+
     public class SkillSlot
     {
         public SkillData data;
@@ -25,11 +26,15 @@ public class SkillManager : MonoBehaviour
         if (found != null)
         {
             found.LevelUp();
+            ApplySkillEffect(found);
         }
         else
         {
+            var slot = new SkillSlot(skill);
             acquiredSkills.Add(new SkillSlot(skill));
-            ActivateSkill(skill); //  ¿©±â!
+            ActivateSkill(skill);
+            acquiredSkills.Add(slot);
+            ApplySkillEffect(slot);
         }
     }
 
@@ -48,6 +53,24 @@ public class SkillManager : MonoBehaviour
                     break;*/
         }
     }
+    void ApplySkillEffect(SkillSlot slot)
+    {
+        switch (slot.data.skillType)
+        {
+            case SkillType.MultiShot:
+                GetComponent<PlayerShooting>()?.UpdateMultiShotLevel(slot.level);
+                break;
+
+           case SkillType.AreaBlast:
+                GetComponent<PlayerAreaBlast>()?.UpdateSkillLevel(slot.level);
+                break;
+
+                // case SkillType.OrbitObject:
+                //     GetComponent<PlayerOrbitSkill>()?.UpdateSkillLevel(slot.level);
+                //     break;
+        }
+    }
+
 
     public int GetSkillLevel(SkillType type)
     {
