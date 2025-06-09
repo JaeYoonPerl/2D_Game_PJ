@@ -31,12 +31,12 @@ public class PlayerStatus : MonoBehaviour
         {
             stats.level = GameManager.Instance.playerLevel;
             stats.currentExp = GameManager.Instance.playerExp;
+            stats.attackPower = GameManager.Instance.attackPower;
+            stats.moveSpeed = GameManager.Instance.moveSpeed;
+            stats.expToNextLevel = GameManager.Instance.expToNextLevel;
 
             var health = GetComponent<PlayerHealth>();
-            if (health != null)
-            {
-                health.SetHP(GameManager.Instance.playerHP, GameManager.Instance.playerMaxHP);
-            }
+            health.SetHP(GameManager.Instance.playerHP, GameManager.Instance.playerMaxHP);
 
             foreach (var skill in GameManager.Instance.acquiredSkills)
             {

@@ -6,11 +6,16 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private PlayerStatus status;
 
-    private int multiShotLevel = 1;
+    private int multiShotLevel = 0;
 
     public void EnableMultiShot()
     {
-        multiShotLevel++;
+
+        if (multiShotLevel == 0)
+            multiShotLevel = 1; // 처음 습득 시 1레벨로 설정
+        else
+            multiShotLevel++;   // 이미 있으면 레벨업
+
         Debug.Log($"멀티샷 레벨: {multiShotLevel}");
     }
     public void UpdateMultiShotLevel(int level)
@@ -48,11 +53,12 @@ public class PlayerShooting : MonoBehaviour
     {
         switch (level)
         {
-            case 1: return 1;
-            case 2: return 3;
-            case 3: return 5;
-            case 4: return 7;
-            default: return 9;
+            case 0: return 1;
+            case 1: return 2;
+        case 2: return 3;
+        case 3: return 5;
+        case 4: return 7;
+        default: return 9;
         }
     }
 }

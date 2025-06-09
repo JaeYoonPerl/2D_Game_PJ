@@ -33,10 +33,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void Start()
     {
-        maxHP = m_status.MaxHP; // PlayerStatus에서 가져오기
-        currentHP = maxHP;
+        maxHP = m_status.MaxHP;
 
-        UpdateHealthUI();
+        // GameManager에서 값이 있으면 그걸 사용
+        if (GameManager.Instance != null)
+        {
+            SetHP(GameManager.Instance.playerHP, GameManager.Instance.playerMaxHP);
+        }
+        else
+        {
+            currentHP = maxHP;
+            UpdateHealthUI();
+        }
 
         if (gameOverUI != null)
         {

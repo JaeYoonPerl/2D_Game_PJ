@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee32867a1d1f9c14ab23896203d07f2b, type: 3}
   m_Name: PlayerOrbitSkill
   m_EditorClassIdentifier: 
-  skillName: Spin
-  description: dasdasjjj
+  skillName: not yet
+  description: not yet
   icon: {fileID: 21300000, guid: 14a0f66a7be165c4ba476e3d7c40e390, type: 3}
   maxLevel: 5
   skillType: 2

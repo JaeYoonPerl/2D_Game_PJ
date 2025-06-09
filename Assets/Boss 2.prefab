@@ -236,7 +236,7 @@ MonoBehaviour:
   m_rigid: {fileID: 1797178715111138298}
   m_target: {fileID: 0}
   m_velocity: {x: 0, y: 0}
-  m_speed: 3
+  m_speed: 2.9
 --- !u!114 &-3670930144287815235
 MonoBehaviour:
   m_ObjectHideFlags: 0

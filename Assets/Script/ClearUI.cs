@@ -30,7 +30,9 @@ public class ClearUI : MonoBehaviour
         GameManager.Instance.playerExp = player.stats.currentExp;
         GameManager.Instance.playerHP = health.CurrentHP;
         GameManager.Instance.playerMaxHP = health.MaxHP;
-        GameManager.Instance.acquiredSkills = new List<SkillData>();
+        GameManager.Instance.attackPower = player.stats.attackPower;
+        GameManager.Instance.moveSpeed = player.stats.moveSpeed;
+        GameManager.Instance.expToNextLevel = player.stats.expToNextLevel;
 
         foreach (var skill in skillManager.acquiredSkills)
         {

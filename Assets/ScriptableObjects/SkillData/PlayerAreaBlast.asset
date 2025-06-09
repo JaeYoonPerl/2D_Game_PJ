@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee32867a1d1f9c14ab23896203d07f2b, type: 3}
   m_Name: PlayerAreaBlast
   m_EditorClassIdentifier: 
-  skillName: Explosion
-  description: sdasdasdasdasd
+  skillName: Domain Expansion
+  description: Damage around the player
   icon: {fileID: 21300000, guid: 2456dd2824f5ec540830760922f5bac6, type: 3}
   maxLevel: 5
   skillType: 1
